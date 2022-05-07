@@ -11,16 +11,28 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+
+
 const Books = (props) => {
     const { removeObj } = props;
 
 
+    window.onload = function() {
+        if(!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }
+    
+
+        
     const DeleteItem = ( BookId ) => {
         alert('product deleted')
         axios.delete('http://localhost:8000/api/book/' + BookId)
         .then(res => removeObj(BookId))
         .catch((err) => console.log(err))
 }
+    
 
 
     return (
@@ -47,12 +59,13 @@ const Books = (props) => {
         </Box>
         {props.books.map((reads, index) => (
                 <div key={index} className="books">
-                    <p>{reads.name}</p>
-                    <p>{reads.author}</p>
-                    <p>{reads.genre}</p>
-                    <p>{reads.description}</p>
-                    <p>${reads.price}</p>
-                    <button onClick={(e) => {DeleteItem(reads._id)}}>Delete</button>
+                    <p>Book Name:   <b>{reads.name}</b></p>
+                    <p>Author:      <b>{reads.author}</b></p>
+                    <p>Genre:       <b>{reads.genre}</b></p>
+                    <p>Description: <b>{reads.description}</b></p>
+                    <p>Price: $<b>{reads.price}</b></p>
+                    <Button onClick={(e) => {DeleteItem(reads._id)}} variant="contained" color="primary" sx={{  mt: 2, ml: 6 }}>Delete</Button >
+                    <Link to={`/update/${reads._id}`} className="updating"><Button variant="contained" color="primary" sx={{  mt: 2, ml: 2 }} >Update</Button></Link>
                 </div>
         ))}
         </div>

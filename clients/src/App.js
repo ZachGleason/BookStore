@@ -5,6 +5,7 @@ import axios from "axios";
 import Books from './components/Books';
 import AddBook from './components/NewBook'
 import Contact from './components/Contact'
+import Update from './components/Update'
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={ <Books removeObj={removeObj} books={books}/> }></Route>
         <Route path="/new" element={ <AddBook books={books} setBooks={setBooks}/> }></Route>
         <Route path="/contact" element={ <Contact /> }></Route>
+        <Route path="/update/:id" element={ <Update /> }></Route>
       </Routes>
     </BrowserRouter>
   )

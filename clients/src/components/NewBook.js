@@ -19,6 +19,7 @@ const AddBook = (props) => {
     const [genre, setGenre] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const navigate = useNavigate("");
 
     const createBook = (e) => {
         e.preventDefault();
@@ -38,6 +39,7 @@ const AddBook = (props) => {
             setGenre('')
             setDescription('')
             setPrice('')
+            navigate('/')
         })
         .catch((err) => console.log(err))
     }
