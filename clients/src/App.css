@@ -1,0 +1,21 @@
+.books {
+  display: inline-block;
+  border: 1px solid black;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.add {
+  text-decoration: none;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.link {
+  text-decoration: none;
+
+}
