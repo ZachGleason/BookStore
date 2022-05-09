@@ -12,8 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
-const AddBook = (props) => {
-    const { books, setBooks } = props
+const AddBook = () => {
     const [name, setName] = useState("");
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState("");
@@ -33,14 +32,13 @@ const AddBook = (props) => {
         })
         .then(res => {
             console.log("Test2")
-            setBooks([...books, res.data])
             setName('')
             setAuthor('')
             setGenre('')
             setDescription('')
             setPrice('')
             navigate('/')
-            window.location.reload(true);
+            // window.location.reload(true);
         })
         .catch((err) => console.log(err))
     }
@@ -73,9 +71,13 @@ const AddBook = (props) => {
             <FormControl  sx={{ ml: 85, mt: 1, }} >
                 <FormControl>
                     <Input id="name" placeholder="Book Name..." onChange={(e) => setName(e.target.value)}  sx={{ width: 300, mt: 1 }}/>
+                    {name.length < 5 && name.length > 0 ? (
+                    <p> Name must be greater than than 5 characters </p> ): null}
                 </FormControl>
                 <FormControl>
                     <Input id="author" placeholder="Author Name..." onChange={(e) => setAuthor(e.target.value)} sx={{  mt: 2, }} />
+                    {author.length < 5 && author.length > 0 ? (
+                    <p> Author must be greater than than 5 characters </p> ): null}
                 </FormControl>
                 <FormControl>
                     <Select
@@ -94,9 +96,13 @@ const AddBook = (props) => {
                     </FormControl>
                     <FormControl>
                         <Input id="descripion" placeholder="Description..." onChange={(e) => setDescription(e.target.value)} sx={{  mt: 2, }} />
+                        {description.length < 5 && description.length > 0 ? (
+                        <p> Description must be greater than than 5 characters </p> ): null}
                     </FormControl>
                     <FormControl>
                         <Input id="price" placeholder="Price..." onChange={(e) => setPrice(e.target.value)}  sx={{  mt: 2, }}/>
+                        {price.length < 1 && price.length > 0 ? (
+                        <p> Price must be greater than than $10 </p> ): null}
                     </FormControl>
                     <Button type="submit" variant="contained" color="primary" sx={{  mt: 2, }}>Submit</Button >
                     {/* <Link to="/" className="link"><Button  variant="outlined" color="primary" sx={{  mt: 2, ml: 14 }} >Home</Button ></Link> */}

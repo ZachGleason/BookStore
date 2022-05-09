@@ -8,26 +8,12 @@ import Contact from './components/Contact';
 import Update from './components/Update';
 
 function App() {
-  const [books, setBooks] = useState([]);
-
-  const removeObj = BookId => {
-    setBooks(books.filter(reads => reads._id != BookId)); 
-  }
-
-  useEffect(() => {
-    axios.get("http://localhost:8000/api/books")
-    .then((bookData) => {
-        setBooks(bookData.data.books);
-        console.log(bookData.data.books);
-    })
-    .catch((err) => console.log(err))
-}, [])
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={ <Books removeObj={removeObj} books={books}/> }></Route>
-        <Route path="/new" element={ <AddBook books={books} setBooks={setBooks}/> }></Route>
+        <Route path="/" element={ <Books /> }></Route>
+        <Route path="/new" element={ <AddBook /> }></Route>
         <Route path="/contact" element={ <Contact /> }></Route>
         <Route path="/update/:id" element={ <Update /> }></Route>
       </Routes>

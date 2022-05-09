@@ -13,8 +13,23 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 
-const Books = (props) => {
-    const { removeObj } = props;
+const Books = () => {
+    const [books, setBooks] = useState([]);
+
+    const removeObj = BookId => {
+        setBooks(books.filter(reads => reads._id != BookId)); 
+        }
+    
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/books")
+        .then((bookData) => {
+            setBooks(bookData.data.books);
+            console.log("test", bookData.data.books);
+        })
+        .catch((err) => console.log(err))
+    }, [])
+
+
 
         
     const DeleteItem = ( BookId ) => {
@@ -48,7 +63,7 @@ const Books = (props) => {
             </Toolbar>
         </AppBar>
         </Box>
-        {props.books.map((reads, index) => (
+        {books.map((reads, index) => (
                 <div key={index} className="books">
                     <p>Book Name:   <b>{reads.name}</b></p>
                     <p>Author:      <b>{reads.author}</b></p>
