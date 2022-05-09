@@ -16,15 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 const Books = (props) => {
     const { removeObj } = props;
 
-
-    window.onload = function() {
-        if(!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
-    }
-    
-
         
     const DeleteItem = ( BookId ) => {
         alert('product deleted')

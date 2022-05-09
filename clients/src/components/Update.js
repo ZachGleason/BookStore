@@ -39,6 +39,7 @@ const Update = () => {
                 console.log(res);
                 console.log(res.data);
                 navigate("/");
+                window.location.reload(true);
             })
             .catch((err) => {console.log(err)})
             }

@@ -40,6 +40,7 @@ const AddBook = (props) => {
             setDescription('')
             setPrice('')
             navigate('/')
+            window.location.reload(true);
         })
         .catch((err) => console.log(err))
     }
